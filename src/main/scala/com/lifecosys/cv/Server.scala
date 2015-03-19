@@ -17,7 +17,8 @@ object CvServer {
       val element: WebElement = driver.executeScript("""return $("td:contains('杨丹')").get(1)""").asInstanceOf[WebElement]
       element.findElement(By.name("VoTeid")) click ()
       driver.findElement(By.name("Submit")) click ()
-      wait(driver.findElement(By.name("code")).isDisplayed)(driver)
+      wait(driver.findElement(By.id("code")).isDisplayed)(driver)
+      driver.executeScript("document.getElementById('code').focus()");
       new WebDriverWait(driver, 5000) until ExpectedConditions.alertIsPresent()
       val alert = driver.switchTo().alert();
       alert.accept()
